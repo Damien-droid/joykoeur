@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Univers - Landing Page</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Mon Univers</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link">Accueil</a>
+                <a href="#parcours" class="nav-link">Mon Parcours</a>
+                <a href="#f1" class="nav-link">F1</a>
+                <a href="#voile" class="nav-link">Voile</a>
+                <a href="#algue" class="nav-link">Projet Algue</a>
+                <a href="#cyber" class="nav-link">Projet Cyber-Sécurité</a>
+                <a href="#avenir" class="nav-link">À Venir</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Basculer le menu de navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero" aria-label="Introduction">
+        <div class="hero-content">
+            <h1 class="hero-title">Bienvenue dans mon univers</h1>
+            <p class="hero-subtitle">Découvrez mes passions et projets</p>
+            <a href="#parcours" class="hero-btn">Découvrir mon parcours</a>
+        </div>
+        <div class="hero-background" aria-hidden="true"></div>
+    </section>
+
+    <!-- Mon Parcours Section -->
+    <section id="parcours" class="section section-light" aria-labelledby="heading-parcours">
+        <div class="container">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2 id="heading-parcours">Mon Parcours</h2>
+                    <p>Je suis un étudiant passionné par la technologie et l'ingénierie. Voici un aperçu de mon cheminement académique et professionnel.</p>
+                </div>
+                <div class="section-image">
+                    <div class="placeholder-image" aria-hidden="true">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- F1 Section -->
+    <section id="f1" class="section section-dark" aria-labelledby="heading-f1">
+        <div class="container">
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <h2 id="heading-f1">La F1</h2>
+                    <p>La Formule 1 est pour moi un symbole ultime d'innovation et de performance. Je suis fasciné par la complexité des moteurs hybrides et l'aérodynamique avancée.</p>
+                </div>
+                <div class="section-image">
+                    <div class="placeholder-image" aria-hidden="true">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voile Section -->
+    <section id="voile" class="section section-light" aria-labelledby="heading-voile">
+        <div class="container">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2 id="heading-voile">La Voile</h2>
+                    <p>Naviguer en mer offre un sentiment de liberté inégalé. La voile m'a appris la patience, la stratégie et la résilience face aux éléments.</p>
+                </div>
+                <div class="section-image">
+                    <div class="placeholder-image" aria-hidden="true">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projet Algue Section -->
+    <section id="algue" class="section section-dark" aria-labelledby="heading-algue">
+        <div class="container">
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <h2 id="heading-algue">Projet Algue</h2>
+                    <p>Je travaille sur un projet de valorisation des algues pour produire des bioplastiques durables, visant à réduire la pollution plastique.</p>
+                </div>
+                <div class="section-image">
+                    <div class="placeholder-image" aria-hidden="true">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projet Cyber-Sécurité Section -->
+    <section id="cyber" class="section section-light" aria-labelledby="heading-cyber">
+        <div class="container">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2 id="heading-cyber">Projet Cyber-Sécurité</h2>
+                    <p>Ce projet vise à développer des solutions open-source pour détecter et contrer les cyber-attaques émergentes dans les infrastructures critiques.</p>
+                </div>
+                <div class="section-image">
+                    <div class="placeholder-image" aria-hidden="true">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À Venir Section -->
+    <section id="avenir" class="section section-coming-soon" aria-labelledby="heading-avenir">
+        <div class="container">
+            <div class="coming-soon-content">
+                <h2 id="heading-avenir">Restez à l'écoute</h2>
+                <p>De nouveaux projets passionnants arrivent bientôt</p>
+                <form class="newsletter-form" aria-label="Formulaire d'inscription à la newsletter">
+                    <label for="newsletter-email" class="sr-only">Adresse e-mail</label>
+                    <input id="newsletter-email" type="email" placeholder="Votre adresse e-mail" class="email-input" required>
+                    <button type="submit" class="newsletter-btn">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" aria-label="Pied de page">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Mon Univers – Tous droits réservés</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>
