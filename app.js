@@ -140,6 +140,92 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ------------- PWA Service Worker Registration ----- */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('[PWA] Service Worker registered successfully:', registration.scope);
+          
+          // Check for updates
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // New content is available, ask user to refresh
+                if (confirm('Une nouvelle version est disponible. Voulez-vous actualiser ?')) {
+                  newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  window.location.reload();
+                }
+              }
+            });
+          });
+        })
+        .catch((error) => {
+          console.log('[PWA] Service Worker registration failed:', error);
+        });
+    });
+  }
+
+  /* ------------- PWA Install Prompt ------------------- */
+  let deferredPrompt;
+  
+  window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('[PWA] beforeinstallprompt fired');
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later
+    deferredPrompt = e;
+    
+    // Show custom install button/banner
+    showInstallPromotion();
+  });
+
+  function showInstallPromotion() {
+    // Create install promotion banner
+    const installBanner = document.createElement('div');
+    installBanner.id = 'pwa-install-banner';
+    installBanner.innerHTML = `
+      <div style="background: var(--color-primary); color: white; padding: 12px; position: fixed; top: 60px; left: 0; right: 0; z-index: 1000; text-align: center; box-shadow: var(--shadow-md);">
+        <span>📱 Installez "Mon Univers" pour une meilleure expérience !</span>
+        <button id="pwa-install-btn" style="margin-left: 12px; background: white; color: var(--color-primary); border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Installer</button>
+        <button id="pwa-dismiss-btn" style="margin-left: 8px; background: transparent; color: white; border: 1px solid white; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Plus tard</button>
+      </div>
+    `;
+    
+    document.body.appendChild(installBanner);
+    
+    // Handle install button click
+    document.getElementById('pwa-install-btn').addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('[PWA] User accepted the install prompt');
+          } else {
+            console.log('[PWA] User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+          document.getElementById('pwa-install-banner').remove();
+        });
+      }
+    });
+    
+    // Handle dismiss button click
+    document.getElementById('pwa-dismiss-btn').addEventListener('click', () => {
+      document.getElementById('pwa-install-banner').remove();
+    });
+  }
+
+  window.addEventListener('appinstalled', (evt) => {
+    console.log('[PWA] App was installed.');
+    // Remove the install banner if it's still showing
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) {
+      banner.remove();
+    }
+  });
+
   /* ------------- Init Message ------------------------ */
   console.log('Mon Univers – site initialisé');
 });
